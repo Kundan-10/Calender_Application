@@ -51,4 +51,9 @@ public class MyUser {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Event> events=new ArrayList<>();
 
+	public String getRole() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
