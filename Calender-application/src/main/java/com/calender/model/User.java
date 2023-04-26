@@ -1,12 +1,18 @@
 package com.calender.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
@@ -23,6 +29,11 @@ public class User {
     @Email(message="correct the mail")
 	private String Email;
 	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String userName;
+	
+	
+	
 	@Pattern(regexp = "^[a-zA-Z]*$", message = "First Name Special Characters are not Allowed.")
 	private String firstName;
 	
@@ -35,10 +46,11 @@ public class User {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	@Past(message="date should be past")
 	private LocalDate dateOfBirth;
+	
+	private String password;
 
-	public List<Event> getEvents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Event> events=new ArrayList<>();
 
 }
