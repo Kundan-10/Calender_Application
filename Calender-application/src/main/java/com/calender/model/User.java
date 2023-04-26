@@ -1,6 +1,7 @@
 package com.calender.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -34,5 +35,10 @@ public class User {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	@Past(message="date should be past")
 	private LocalDate dateOfBirth;
+
+	public List<Event> getEvents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

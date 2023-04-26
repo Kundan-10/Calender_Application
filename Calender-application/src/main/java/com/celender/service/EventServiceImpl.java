@@ -6,24 +6,32 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.calender.model.Event;
+import com.calender.model.User;
+import com.calender.repository.EventDao;
+import com.calender.repository.MyUserDao;
+import com.calender.repository.UserDao;
 import com.celender.exception.EventException;
 import com.celender.exception.UserException;
 
+@Service
+public class EventServiceImpl  implements EventService{
+	
 
-public interface EventServiceImpl {
 	@Autowired
-	private EventDAO eDao;
+	private EventDao eDao;
 	
 	@Autowired
-	private UserDAO uDao;
-	
+	private UserDao uDao;
+
 	@Override
-	public Event createEvent(Event event,String email) throws EventException,UserException {
+	public Event createEvent(Event event, String email) throws EventException, UserException {
+		
 		
 		Optional<User> u=uDao.findById(email);
 		if(u.isPresent()) {
 			Event e=eDao.save(event);
-			u.get().getEvents().add(e);
+			u.get().getEvents();
 			uDao.save(u.get());
 			return e;
 		}else {
@@ -32,8 +40,7 @@ public interface EventServiceImpl {
 	}
 
 	@Override
-	public Event updateEvent(Event event, Integer eventId,String email) throws EventException,UserException {
-		
+	public Event updateEvent(Event event, Integer eventId, String email) throws EventException, UserException {
 		Optional<User> u=uDao.findById(email);
 		if(u.isPresent()) {
 		Optional<Event> e=eDao.findById(eventId);
@@ -51,8 +58,7 @@ public interface EventServiceImpl {
 	}
 
 	@Override
-	public Event deleteEvent(Integer eventId,String email) throws EventException,UserException {
-		
+	public Event deleteEvent(Integer eventId, String email) throws EventException, UserException {
 		Optional<User> u=uDao.findById(email);
 		if(u.isPresent()) {
 		Optional<Event> e=eDao.findById(eventId);
@@ -76,5 +82,6 @@ public interface EventServiceImpl {
 			throw new UserException("User not found");
 		}
 	}
+	
 
 }

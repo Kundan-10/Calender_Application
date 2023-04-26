@@ -1,9 +1,13 @@
 package com.celender.exception;
 
 public class EventException extends Exception{
-
 	public EventException() {
-		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public EventException(String msg) {
+		super(msg);
+		
 		// TODO Auto-generated constructor stub
 	}
 	
