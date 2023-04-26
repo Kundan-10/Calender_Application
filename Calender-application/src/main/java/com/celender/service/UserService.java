@@ -13,9 +13,7 @@ public interface UserService {
 	
 	public User registerUser(User user)throws UserException;
 	public User updateUser(UserDto user) throws UserException;
-	
 	public String  loginUser(LoginDto login);
-
 	public List<Event> getEvent(String type,String email)throws EventException,UserException;
 }
 
