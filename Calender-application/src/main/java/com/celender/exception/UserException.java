@@ -1,10 +1,10 @@
 package com.celender.exception;
 
-public class EventException extends Exception{
+public class UserException extends Exception{
 
-	public EventException() {
+	public UserException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }
