@@ -43,20 +43,6 @@ public class UserController {
 		
 		return new ResponseEntity<User>(u, HttpStatus.OK);
 	}
-	@PostMapping("/login")
-	public ResponseEntity<String> loginUser(@RequestBody LoginDto login){
-		
-		String s=uService.loginUser(login);
-		
-		return new ResponseEntity<String>(s, HttpStatus.CREATED);
-	}
-	
-	@GetMapping("/event/{email}/{type}")
-	public ResponseEntity<List<Event>> getEvent(@PathVariable("type") String type,@PathVariable("email") String email) throws EventException, UserException{
-		
-		List<Event> elist=uService.getEvent(type, email);
-		
-		return new ResponseEntity<List<Event>>(elist, HttpStatus.OK);
-	}
+
 
 }
